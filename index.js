@@ -22,6 +22,16 @@ async function run(){
        const reviewConnection = database.collection('userReview');
 
 
+       app.delete('/userOrders/:email/:id',async(req,res)=>{
+           const email = req.params.email;
+           const id = req.params.id;
+           console.log(email,id);
+           const qeury ={_id:ObjectId(id),userEmail:email}
+           const result = await userConnection.deleteOne(qeury)
+           res.json(result)
+       });
+
+
        //post user review
        app.post('/userReview',async(req,res)=>{
         const data = req.body;
