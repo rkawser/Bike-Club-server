@@ -62,7 +62,7 @@ async function run(){
            })
 
        
-       //api load
+       //api bicycle load
        app.get('/bicycle',async(req,res)=>{
         const cursor = bicycleConnection.find({}).limit(6)
         const result = await cursor.toArray();
