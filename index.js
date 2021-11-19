@@ -16,7 +16,18 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
     try{
         await client.connect();
-       
+       const database = client.db('bicycle_project');
+       const bicycleConnection = database.collection('bicycle');
+
+
+       //api load
+       app.get('/bicycle',async(req,res)=>{
+        const cursor = bicycleConnection.find({}).limit(6)
+        const result = await cursor.toArray();
+        res.send(result)
+       })
+
+
     }
   
     finally{
